@@ -1,3 +1,5 @@
+use token::{Token, TokenType};
+
 struct Scanner {
     filename: &str,
     file: File, // std::fs::File
@@ -58,7 +60,18 @@ impl Scanner {
         let mut c = skip();
         
         if let Some(token) = c {
-            todo!();
+            match token {
+                '+' => t.set_type(Some(TokenType::Plus)),
+                '-' => t.set_type(Some(TokenType::Minus)),
+                '*' => t.set_type(Some(TokenType::Star)),
+                '/' => t.set_type(Some(TokenType::Slash)),
+                _ => {
+                    if token.is_ascii_digit() {
+                        todo!();
+                    } else {
+                        panic!("Invalid token");
+                    }
+                }
         } else {
             False;
         }
