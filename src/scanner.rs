@@ -67,13 +67,16 @@ impl Scanner {
                 '/' => t.set_type(Some(TokenType::Slash)),
                 _ => {
                     if token.is_ascii_digit() {
-                        todo!();
+                        t.set_value(Some(scan_int(c)));
+                        t.set_type(Some(TokenType::IntegerLiteral));
                     } else {
-                        panic!("Invalid token");
+                        panic!("Unrecognised character {c} on line {self.line_number}");
                     }
                 }
+
+            True
         } else {
-            False;
+            False
         }
     }
 }
